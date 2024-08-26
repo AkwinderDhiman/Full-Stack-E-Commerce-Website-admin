@@ -1,0 +1,43 @@
+<div class="container">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <!-- Full-width Product Title -->
+    <div class="form-group title">
+      <label>Product Title</label><br />
+      <input placeholder="type here" formControlName="name" required />
+    </div>
+
+    <!-- Price and Offer Price in a single line -->
+    <div class="form-group price-group">
+      <div class="price">
+        <label>Price</label><br />
+        <input placeholder="type here" formControlName="price" type="number" required />
+      </div>
+
+      <div class="offer-price">
+        <label>Offer Price</label><br />
+        <input placeholder="type here" formControlName="offerPrice" type="number" />
+      </div>
+    </div>
+
+    <!-- Product Category -->
+    <div class="form-group full-width">
+      <label>Product Category</label><br />
+      <select formControlName="category" required>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="form-group full-width image-group">
+      <input type="file" (change)="onFileSelected($event)" />
+      <img [src]="selectedFile" alt="Selected Image" />
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group full-width button-group">
+      <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+    </div>
+  </form>
+</div>
